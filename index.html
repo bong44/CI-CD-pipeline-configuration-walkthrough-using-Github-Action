@@ -6,11 +6,11 @@
   <script>
     $(document).ready(function() {
       $.ajax({
-        url: 'day02/자바스크립트_시작.html',
+        url: './day02/자바스크립트_시작.html',
         type: 'GET',
         dataType: 'html',
         success: function(data) {
-          $('#day02').html(data);
+          $('#idd').html(data);
         }
       });
     });
@@ -18,6 +18,6 @@
 </head>
 <body>
   <h1>Index Page</h1>
-  <div id="day02"></div>
+  <div id="idd"></div>
 </body>
 </html>
