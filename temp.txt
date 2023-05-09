@@ -1,8 +1,0 @@
-#!/bin/bash
-
-VM_IP="192.168.108.199"
-SSH_USER="root"
-SSH_PASSWORD="test123"
-SCRIPT_PATH="/test.sh"
-
-sshpass -p "$SSH_PASSWORD" ssh -o StrictHostKeyChecking=no $SSH_USER@$VM_IP "bash $SCRIPT_PATH"
