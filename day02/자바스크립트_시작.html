@@ -3,10 +3,32 @@
 <head>
     <meta charset="UTF-8">
     <script>
+        
+        // 숫자리터럴, 문자리터럴, 논리리터럴
         var i = 10;
-        i="Hello";
-        document.write(i);
+        var j = 'Hello';
+        var k = true;
 
+        // 리터럴이 아님
+        var b = i;
+        
+        document.write(i);
+        
+        function display(params) {
+            document.write(params)    
+        };
+        display('Hello22222');
+
+        // 함수리터럴
+        var show = function () {
+            document.write("show....");
+        };
+
+        // 결과는 코드가 나오지 실행결과가 나오지 않음
+        document.write(show);
+
+        // 실행하려면 이와 같이 써야한다.
+        show(); //리터럴에서 명령어로 바뀜
     </script>
 </head>
 <body>
