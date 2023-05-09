@@ -1,9 +1,23 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<title>index.html</title>
+  <title>Index</title>
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  <script>
+    $(document).ready(function() {
+      $.ajax({
+        url: 'day02/자바스크립트_시작.html',
+        type: 'GET',
+        dataType: 'html',
+        success: function(data) {
+          $('#day02').html(data);
+        }
+      });
+    });
+  </script>
 </head>
 <body>
-	<iframe src="./day02/자바스크립트_시작.html" width="100%" height="100%"></iframe>
+  <h1>Index Page</h1>
+  <div id="day02"></div>
 </body>
 </html>

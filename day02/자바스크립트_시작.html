@@ -29,6 +29,19 @@
 
         // 실행하려면 이와 같이 써야한다.
         show(); //리터럴에서 명령어로 바뀜
+
+        // 객체리터럴 = JSON (여러종류의 리터럴 넣을 수 있음)
+        var obj = {
+            x:100,
+            y:200,
+            display:function(){
+                document.write("show");
+            }
+        };
+        // 배열리터럴 (여러종류의 리터럴 넣을 수 있음)
+        var arr = [10,20.50,'Hello',true,function(){},[7,8]];
+
+        document.write(arr[0]);
     </script>
 </head>
 <body>
