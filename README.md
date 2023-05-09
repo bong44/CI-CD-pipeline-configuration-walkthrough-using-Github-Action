@@ -84,10 +84,17 @@ On this README file, explained how to set pipeline:**
       0-2. 깃 push 자동화 실행파일 코드 (auroUpload.sh)
       
       ```sh
-      #!/bin/bash
+        #!/bin/bash
 
-      read -p "콘솔 입력 _ 커밋 메세지를 입력해주세요: " msg
-      git add . && git commit -m " $msg " && git push origin master
+        if [ $# -eq 1 ]; then
+        msg=$1
+        else
+        msg=$(date +"%Y-%m-%d %T")" content edit"
+        fi
+
+        echo $msg
+
+        git add . && git commit -m " $msg " && git push origin master
       ```
   1. 깃 repository와 연결 (윈도우는 git bash를 사용)
     
@@ -134,7 +141,7 @@ On this README file, explained how to set pipeline:**
   
 ## How to use
 
-  - C:\User\Kosta\[파일경로]> .\auroUpload.sh 실행
+  - C:\User\Kosta\[파일경로]> .\auroUpload.sh [커밋메세지 (선택사항)]  <-- 인수로 커밋 메세지 넣어서 실행 가능
 
 ### Tips
   
