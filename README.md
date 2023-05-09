@@ -1,240 +1,160 @@
-# DeepLearning jetson AI project
-  This project aims to build an AI machine that recognizes user gestures to control users' home appliances (e.g., laptop, TV, Audio) in real-life scenarios.
-Based on this code, Jetson Nano can recognize the user's hand and manipulates the operating system through gestures. The function of gestures are as follows:
-  - Volume Control
+# Web Programming Practice & CI/CD auto pipeline build useing Git and Jenkins
+
+**This repo aims to practice to build a pipeline that useing git, jenkins, docker, linux shell and network programming skill.
+On this README file, explained how to set pipeline:**
+
+  - Network setting
   - Mute
   - Unmute
   - Capture
   - Shutdown<br><br>
+  
   <img src="https://img.shields.io/badge/python-3776AB?style=for-the-badge&logo=python&logoColor=white"><img src="https://img.shields.io/badge/Google Mediapipe-4285F4?style=for-the-badge&logo=google&logoColor=white"><img src="https://img.shields.io/badge/Jetson Nano-76B900?style=for-the-badge&logo=nvidia&logoColor=white">
  
-# Outcomes
-<img src="./demo_2.gif" width="400" height="280"/>
+# requirement
+  - CentOS(also Virtual CentOS) 
+    - Jenkins Server installed
+    - Docker installed
+  - GitHub repository
+  - DockerHub repository
 
-# Youtube URL
-[![Video Label](https://user-images.githubusercontent.com/65393001/206189750-c33c1160-b96c-4b07-a5ab-8be678ae29f2.PNG)](https://youtu.be/XbvgqPYqAnI)
+# Outcome
 
+  - **http://[CentOS IP:포워딩된 포트]/[html파일의 경로] 와 같은 방식으로 웹에서 접근할 수 있도록 구성**
 
-## How to Install
-0. Update and Upgrade the APT and PIP
-  ```sh
-  sudo apt-get update
-  sudo apt-get upgrade
-  pip3 install --upgrade pip
-  ```
-1. Download jetpack from Nvidia JetPack SDK
-  * We used version 4.6 / https://developer.nvidia.com/embedded/jetpack-sdk-46
-2. Create Boot image from Jetpack (We used Balena Etcher)
-3. Install Pytorch and Torchvision(https://forums.developer.nvidia.com/t/pytorch-for-jetson/72048)
-  **<h4>⚠️ DO NOT INSTALL PYTORCH AND TORCHVISON VIA ANY PACKAGE MANAGER ⚠️</h4>**
-  * We used PyTorch v1.10.0 and torchvision v0.10.0
-  * if error with PIL deprecated, install Pillow < v7
-  * Pytorch Install
-  ```sh
-  sudo apt-get install python3-pip libopenblas-base libopenmpi-dev libomp-dev
-  pip3 install Cython
-  pip3 install numpy torch-1.11.0-cp36-cp36m-linux_aarch64.whl
-  ```
-  * Torchvision Install
-  ```sh
-  sudo apt-get install libjpeg-dev zlib1g-dev libpython3-dev libavcodec-dev libavformat-dev libswscale-dev
-  git clone --branch v0.11.0 https://github.com/pytorch/vision torchvision
-  cd torchvision
-  export BUILD_VERSION=0.11.0 
-  python3 setup.py install --user
-  pip3 install 'pillow<7'
-  ```
-4. Install Mediapipe
-  **<h4>⚠️ DO NOT INSTALL MEDIAPIPE VIA PIP ⚠️</h4>**
-  * Reference : https://github.com/Melvinsajith/How-to-Install-Mediapipe-in-Jetson-Nano
-  ```sh
-  sudo apt-get install libhdf5-serial-dev hdf5-tools libhdf5-dev \
-  zlib1g-dev zip libjpeg8-dev liblapack-dev libblas-dev gfortran
-  ```
-  ```sh
-  sudo pip3 install -U pip testresources setuptools==49.6.0
-  ```
-  ```sh
-  sudo pip3 install -U --no-deps numpy==1.19.4 future==0.18.2 mock==3.0.5 \
-  keras_preprocessing==1.1.2 keras_applications==1.0.8 gast==0.4.0 \
-  protobuf pybind11 cython pkgconfig
-  ```
-  ```sh
-  sudo env H5PY_SETUP_REQUIRES=0 pip3 install -U h5py==3.1.0
-  ```
-  Install OpenCV
-  ```sh
-  sudo apt-get install python3-opencv
-  ```
-  Test the OpenCV
-  ```python
-  import cv2
-  print(cv2.getBuildInformation())
-  ```
-  Check for GSTREAMER support in VIDEO I/O section
-  ```sh
-  GStreamer:                   YES (1.14.5)tree/master/script
-  ```
-  Increase swap for more swap ram
-  ```sh
-  git clone https://github.com/JetsonHacksNano/installSwapfile.git  
-  cd installSwapfile
-  ./installSwapfile.sh
-  ```
-  Install Mediapipe
-  ```sh
-  sudo apt-get install -y libopencv-core-dev  libopencv-highgui-dev libopencv-calib3d-dev libopencv-features2d-dev libopencv-imgproc-dev libopencv-video-dev
-  sudo chmod 744 setup_opencv.sh
-  ./setup_opencv.sh
-  sudo pip3 install opencv_contrib_python
-  ```
-  Download Files
-  https://drive.google.com/file/d/1lHr9Krznst1ugLF_ElWGCNi_Y4AmEexx/view?usp=sharing
-  ```sh
-  unzip mediapipe-bin.zip
-  cd mediapipe-bin
-  sudo pip3 install numpy-1.19.4-cp36-none-manylinux2014_aarch64.whl mediapipe-0.8.5_cuda102-cp36-none-linux_aarch64.whl
-  pip3 install dataclasses
-  ```
-  5-1. (Optional) If you wanna input CSI Camera video source, install OpenCV using this method
-  **<h4>⚠️ WARNING. This task lasts at least 4 hours ⚠️</h4>**
-  * Reference : https://github.com/AastaNV/JEP/
-  ```sh
-  wget https://raw.githubusercontent.com/AastaNV/JEP/master/script/install_opencv4.5.0_Jetson.sh
-  ./install_opencv4.5.0_Jetson.sh
-  ```
+# Getting start
+
+- Describes various settings for configuring the pipeline and how to execute it
+
+## Network setting
+
+  0. 가상머신일 경우 network setting을 bridged가 아닌 NAT로 설정
+
+  1. CentOS의 8080(젠킨스 포트)와 앞으로 만들어질 임의의 컨테이너 포트포워딩 설정 (본인은 가상머신을 사용하여 호스트 OS의 내부포트와 연결시키줌)
   
-## Algorithms used in Projects
+![image](https://user-images.githubusercontent.com/65393001/236975695-4cd22293-95ed-4ad9-8d05-05c5ccb2f8ef.png)
 
-* The K-Nearest Neighbor (K-NN) algorithm is the simplest machine learning algorithm, classification algorithm. Data with similar characteristics are used under the assumption that they tend to fall into similar categories.
+  1-2. [가상머신 사용시] 호스트 OS의 내부포트와 외부포트를 포트포워딩 ⚠️ * 꼭 자신의 아이피로 설정 *
 
-<img src="https://user-images.githubusercontent.com/65393001/206213536-d27ebc5b-1793-47ec-bcf3-77628bacdedb.png" width="600" height="380"/>
-<img src="https://user-images.githubusercontent.com/8403172/206323986-3188f01e-8164-4789-be93-a116ad7094fc.png" width="600" height="250"/>
+![image](https://user-images.githubusercontent.com/65393001/236980568-2486718d-0b75-46df-ba7c-07292823436a.png)
 
-## Code Block Description
+    - 편의를 위해 DDNS 설정 (안 하면 외부 아이피를 사용해야 함)
+      ex) http://test.iptime.org:38080/test.html 와 같이 접근 가능
+    
+   ![image](https://user-images.githubusercontent.com/65393001/236981165-4b7e0ac9-55e2-4904-8f2d-b266686b8531.png)
 
-# Client.py
-* Code for socket communication with server
-```python
-clientSock = socket(AF_INET, SOCK_STREAM)
-clientSock.connect(('172.20.10.3', 7777))
-rps_gesture = {0:'mute', 5:'unmute', 9:'capture', 10:'fix'}
-```
-* Code for Live Video Capture
-```python
-cap = cv2.VideoCapture('nvarguscamerasrc ! video/x-raw(memory:NVMM), width=1280, height=720, format=(string)NV12, framerate=(fraction)20/1 ! nvvidconv ! video/x-raw, format=(string)BGRx ! videoconvert ! video/x-raw, format=(string)BGR ! appsink', cv2.CAP_GSTREAMER)
-```
-* Run while live capture continues
-```python
-while live capture
-while cap.isOpened():
-        success, image = cap.read()
-        
-        if not success:
-            print("can't open video")
-            continue
-```
-* Compute angles between joints, Get angle using arcos of dot product, then Translate certain numeric codes to the server in utf-8 and send them to Socat communication
-```python
-Code for socket communication with server
- if results.multi_hand_landmarks is not None:
-            for res in results.multi_hand_landmarks:
-                joint = np.zeros((21, 3))
-                for j, lm in enumerate(res.landmark):
-                    joint[j] = [lm.x, lm.y, lm.z]
+  2. CentOS와 호스트OS의 인바운드 규칙에 포트번호 추가 (방화벽 off 해도 가능하지만 비권장) ⚠️ * 보안프로그램 방화벽 또한 off *
 
-                # Compute angles between joints
-                v1 = joint[[0,1,2,3,0,5,6,7,0,9,10,11,0,13,14,15,0,17,18,19],:] # Parent joint
-                v2 = joint[[1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20],:] # Child joint
-                v = v2 - v1 # [20,3]
-                # Normalize v
-                v = v / np.linalg.norm(v, axis=1)[:, np.newaxis]
+## Local repository setting
 
-                # Get angle using arcos of dot product
-                angle = np.arccos(np.einsum('nt,nt->n',
-                    v[[0,1,2,4,5,6,8,9,10,12,13,14,16,17,18],:], 
-                    v[[1,2,3,5,6,7,9,10,11,13,14,15,17,18,19],:])) # [15,]
+  0. 깃허브에 올라갈 Dockerfile 등 파이프라인 구성에 필요한 파일 작성 (Dockerfile)
+      ```Dockerfile
+      FROM nginx
+      ADD ./ /usr/share/nginx/html
+      EXPOSE 80
+      ```
+      0-1. Jenkins 의 exec shell에서 실행될 파일 작성 (dockergenerater.sh)
+  
+     ```sh
+      #!/bin/bash
 
-                angle = np.degrees(angle) # Convert radian to degree
+      # 변수 정의
+      CONTAINER_NAME="[컨테이너명]"
+      IMAGE_NAME="[도커허브ID]/[repo이름]:[태그명]"
+      PORT_MAPPING="38080:80"
 
-                # Inference gesture
-                data = np.array([angle], dtype=np.float32)
-                ret, result, neighbours, dist = knn.findNearest(data, 4)
-                idx = int(result[0][0])
+      # 허브에 빌드 후 푸시
+      sudo docker build -t $IMAGE_NAME .
+      sudo docker push $IMAGE_NAME
 
-                # Draw gesture result
-                if idx in rps_gesture.keys():
-                    
-                    print("idx : ", idx)
-                    if idx == 0:
-                        print("mute")
-                        clientSock.send(str(1111).encode('utf-8')) //Translate certain numeric codes to the server in utf-8 and send them to Socat communication
-                        
-                    elif idx == 5:
-                        print("unmute")
-                        clientSock.send(str(2222).encode('utf-8'))
-                        
-                    elif idx == 9 :
-                        print("capture")
-                        clientSock.send(str(3333).encode('utf-8'))
+      # Docker 이미지 가져오기
+      docker pull $IMAGE_NAME
 
-                    elif idx == 10 :
-                        print("shutdown")
-                        clientSock.send(str(4444).encode('utf-8'))
+      # 컨테이너가 존재하는지 확인
+      if [ "$(docker ps -q -f name=$CONTAINER_NAME)" ]; then
+          # 컨테이너가 실행 중이면 업데이트
+          sudo docker container stop $CONTAINER_NAME
+          sudo docker container rm $CONTAINER_NAME
+      fi
 
-                    cv2.putText(image, text=rps_gesture[idx].upper(), org=(int(res.landmark[0].x * image.shape[1]), int(res.landmark[0].y * image.shape[0] + 20)), fontFace=cv2.FONT_HERSHEY_SIMPLEX, fontScale=1, color=(255, 255, 255), thickness=2)
+      # 컨테이너 실행
+      sudo docker container run -d --restart always --name $CONTAINER_NAME -p $PORT_MAPPING $IMAGE_NAME
 
-                # Other gestures
-                # cv2.putText(img, text=gesture[idx].upper(), org=(int(res.landmark[0].x * img.shape[1]), int(res.landmark[0].y * img.shape[0] + 20)), fontFace=cv2.FONT_HERSHEY_SIMPLEX, fontScale=1, color=(255, 255, 255), thickness=2)
+      ```
+      
+      0-2. 깃 push 자동화 실행파일 코드 (auroUpload.sh)
+      
+      ```sh
+      #!/bin/bash
 
-                mp_drawing.draw_landmarks(image, res, mp_hands.HAND_CONNECTIONS)
-```
+      read -p "콘솔 입력 _ 커밋 메세지를 입력해주세요: " msg
+      git add . && git commit -m " $msg " && git push origin master
+      ```
+  1. 깃 repository와 연결 (윈도우는 git bash를 사용)
+    
+    ```sh
+      $ git init
+      $ git remote add origin https://github.com/[GIT프로필]/[repo이름].git
+      ```
 
-# Server.py
-* Code for socket communication with client
-```python
-def recieve_data(val):
-    serverSock = socket(AF_INET, SOCK_STREAM)
-    serverSock.bind(('', 7777))
-    serverSock.listen(1)
-    connectionSock, addr = serverSock.accept()
-    print("Client address : ", str(addr))
-```
-* Decode specific numeric codes passed from the client to perform corresponding actions
-```python
-while True:
-        print("val : ", val.value)
-        try : 
-            vol = int(connectionSock.recv(4).decode('utf-8'))
-            if vol == 1111:
-                print("mute")
-                osascript.osascript('set volume output muted TRUE')
-                val.value = 0
-                while True:
-                    vol = int(connectionSock.recv(4).decode('utf-8'))
-                    if vol == 2222:
-                        osascript.osascript('set volume output muted FALSE')
-                        break
-                    
-            if vol == 3333:
-                print("screenshot")
-                os.system("screencapture screen.png")
-                vol = 0
-                
-            if vol == 4444:
-                print("fix volume")
-                osascript.osascript('tell app "System Events" to shut down')
-                time.sleep(5)
-            if vol < 300:
-                val.value = vol
-        except:
-            pass
-```
+## Git Hub setting
+
+  0. 깃허브에 생성한 repo의 setting -> webhook 아래와 같이 설정 (후에 Jenkins 서버의 build Trigger에 필요) 
+  
+  ![image](https://user-images.githubusercontent.com/65393001/236983194-859396a0-07b4-41eb-835d-45846318e76a.png)
+  
+  1. Jenkins server와 연결의 위한 Token 아래와 같이 생성. 우측상단 프로필 -> settings -> Developer setting -> (classic) Token
+  
+  ![image](https://user-images.githubusercontent.com/65393001/236984441-8c5bdbe0-0b3d-4ba9-9fec-2522f045464a.png)
+  
+  ⚠️ * 생성시 토큰 보여주고 다음번엔 알 수 없기에 잘 보관 *
+  
+## Jenkins setting
+
+  0. Jenkins 관리 -> 플러그인 관리 -> 'github integration' 플러그인 설치
+  
+  ![image](https://user-images.githubusercontent.com/65393001/236992979-88b9a1c6-2f53-4a22-a872-ec36a46bbed9.png)
+
+  2. Jenkins 관리 -> 시스템 설정 -> Git server에서 add server 
+  
+  ![image](https://user-images.githubusercontent.com/65393001/236993753-cfbc7e10-0876-42a6-a5cd-8237ec6c5453.png)
+  
+  kind는 secret text, git Token 입력
+  
+  ![image](https://user-images.githubusercontent.com/65393001/236993981-c026bcca-ad7a-4e42-b99a-573a4662ff97.png)
+  
+  3. 만들어놓은 Jenkins Project -> 구성 -> 소스코드 관리 -> git으로 설정 후 Credentials탭에 Add -> kind 'Username with password'로 토큰 생성
+  
+  ![image](https://user-images.githubusercontent.com/65393001/236995500-da13c06f-4ed5-4c89-becf-fca723869a8f.png)
+  
+  4. 구성 -> 빌드유발 'GitHub hook trigger for GITScm polling' 체크
+  
+  5. 구성 -> Build step 에서 Add build step - Execute shell 추가 후 아래와 같이 구성
+
+  ![image](https://user-images.githubusercontent.com/65393001/236995941-541ef52d-bd3e-4fbe-b0a9-6237fef4f4a1.png)
+  
+## How to use
+
+  - C:\User\Kosta\[파일경로]> .\auroUpload.sh 실행
+
+### Tips
+  
+  - CentOS의 Docker 컨테이너안에 깃에서 받아온 정보가 잘 들어갔는지 아래와 같이 확인할 수 있다.
+    
+    ```sh
+      $ docker exec -it [컨테이너 ID] /bin/bash
+      # 컨테이너 bin/bash 에 진입
+      root@[컨테이너 ID]:# ls -al /usr/share/nginx/html
+      ```
+  - CentOS 로컬환경에서 아래와 같은 방법으로 스크립트를 사용하여 빌드를 유발시킬 수 있다.
+
+    ```sh
+      $ java -jar jenkins-cli.jar -s http://[Jenkins가 설치된 컴퓨터의 IP]:[Jenkins포트]/ build WebStudyAtMetanet -s -v
+      ```
+      
+      ⚠️ * 앞서, 위 명령어를 사용하기 위해선 Jenkins Cli 플러그인이 필요하다. (따로 설치 필요) *
+      
+      https://qaautomation.expert/2022/12/21/how-to-install-plugins-from-jenkins-cli/
 
 ## README 
 
-1. https://github.com/ntu-rris/google-mediapipe
-2. https://google.github.io/mediapipe/solutions/hands
-3. https://developer.nvidia.com/embedded/jetpack-sdk-46
-4. https://github.com/Melvinsajith/How-to-Install-Mediapipe-in-Jetson-Nano
-5. https://github.com/AastaNV/JEP/
