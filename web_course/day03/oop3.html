@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <script>
+        function Enemy() {
+            this.x = 800 * Math.random();
+            this.y = 200;
+            this.display = function () {
+                document.write(this.x+","+this.y)
+            };
+        }//생성자 함수 패턴
+
+        var eobj = new Enemy();
+        var eobj2 = new Enemy();
+
+        eobj.display();
+        eobj2.display();
+
+    </script>
+</head>
+<body>
+    
+</body>
+</html>

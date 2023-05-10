@@ -145,6 +145,10 @@ On this README file, explained how to set pipeline:**
 
 ### Tips
   
+  - 아래와 같은 방법으로 Slack을 통해 build process Notification 구성 가능.
+
+    https://dnight.tistory.com/entry/Jenkins-Slack-%EC%95%8C%EB%A6%BC-%EC%97%B0%EB%8F%99
+
   - CentOS의 Docker 컨테이너안에 깃에서 받아온 정보가 잘 들어갔는지 아래와 같이 확인할 수 있다.
     
     ```sh
