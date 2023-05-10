@@ -30,6 +30,34 @@
         // 실행하려면 이와 같이 써야한다.
         show(); //리터럴에서 명령어로 바뀜
 
+        function makePizza(topping){
+            document.write("<div style='background-color:green';>");
+            document.write("1.도우를 만든다")
+            document.write("2.소스를 바른다")
+            document.write("3.토핑"+topping()+"올린다")
+            document.write("4.굽는다")
+            document.write("</div>")
+        }
+
+        var topping_data1 = function() {
+            document.write("3-1. 해산물을 씻어낸다.")
+            document.write("3-2. 해산물을 익힌다.")
+        };
+        
+        var topping_data2 = function() {
+            document.write("3-1. 고기의 핏기를 제거한다.")
+            document.write("3-2. 고기를 익힌다.")
+            document.write("3-3. 고기를 적당한 크기로 자르다.")
+        };
+
+        // 지점1
+        makePizza(topping_data1);
+        // 지점2
+        makePizza(topping_data2);
+        
+        // 위 함수 리터럴을 사용해서 반복적인 코드는 재활용하면서 변해야만 하는 코드만 변하게 해주는 AOP 방식 구현 가능
+
+
         // 객체리터럴 = JSON (여러종류의 리터럴 넣을 수 있음)
         var obj = {
             x:100,
