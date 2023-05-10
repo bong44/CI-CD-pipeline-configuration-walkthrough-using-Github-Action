@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <script>
+        // ES6 객체 생성 방식
+        class User{
+
+            constructor(name) {
+                // setter를 활성화 합니다.
+                this.name = name;
+            }
+
+            get name() {
+                return this._name;
+            }
+
+            set name(value) {
+                if (value.length < 4) {
+                    alert("name is too short!..");
+                    return;
+                }
+                this._name = value;
+            }
+
+        }
+    </script>
+</head>
+<body>
+    
+</body>
+</html>
