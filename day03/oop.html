@@ -25,11 +25,26 @@
 
         pObj.display(pObj);
 
+        // 외부에서 만든 function에서도 내부 this에게 접근 가능
         pObj.show = function(){
             document.write(this.myShape)
         }
         
         pObj.show();
+
+        // 2. 생성자함수를 활용한 객체선언=ES5
+        function Player() { // 생성자 함수 패턴
+            this.x = Math.random();
+            this.y = 200;
+            this.myShape = "Player";
+            this.display = function(){
+                document.write(this.myShape+":"+this.x);
+            }
+        }
+
+        var pObj2 = new Player();
+        pObj2.display();
+        
     </script>
 </head>
 <body>
