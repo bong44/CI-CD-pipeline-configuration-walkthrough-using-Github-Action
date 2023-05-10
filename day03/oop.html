@@ -13,7 +13,10 @@
             y:200,
             myShape:"Player",
             display:function(){
-                document.write("<h1>"+x+"</h1>");
+                // this를 꼭 써줘야 찾을 수 있음 display 생성시 this를 내려받음
+                document.write("<h1>"+this.x+"</h1>");
+                document.write("<h1>"+this.y+"</h1>");
+                document.write("<h1>"+this.myShape+"</h1>");
             }
         }
 
