@@ -44,7 +44,17 @@
 
         var pObj2 = new Player();
         pObj2.display();
+        // 위 처럼 new 사용하지 않고 생성하면 아래와 같이 window소속의 객체이다.
+        window.Player();
+
+        // 실행 중에도 추가가 가능
+        pObj2.show = function () {
+            document.write("pobj2.show...");
+        }
+        pObj2.show();
+
         
+
     </script>
 </head>
 <body>
