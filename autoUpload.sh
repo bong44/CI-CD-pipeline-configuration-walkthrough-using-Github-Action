@@ -1,11 +1,10 @@
 #!/bin/bash
 
 if [ $# -eq 1 ]; then
-  msg=$1
-else
-  msg=$(date +"%Y-%m-%d %T")" content edit"
+  cntxt=$1
+  echo "cat /usr/share/nginx/html/${cntxt} > /usr/share/nginx/html/index.html" > tuneindex.sh
 fi
 
-echo $msg
+msg=$(date +"%Y-%m-%d %T")" content edit"
 
 git add . && git commit -m " $msg " && git push origin master
