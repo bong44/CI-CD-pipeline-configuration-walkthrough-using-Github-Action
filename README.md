@@ -8,7 +8,7 @@ On this README file, explained how to set pipeline:**
   - Git Hub setting
   - Jenkins setting<br><br>
   
-  <img src="https://img.shields.io/badge/docker-3776AB?style=for-the-badge&logo=docker&logoColor=white"><img src="https://img.shields.io/badge/jenkins-F2CB61?style=for-the-badge&logo=jenkins&logoColor=white"><img src="https://img.shields.io/badge/git-76B900?style=for-the-badge&logo=git&logoColor=white"><img src="https://img.shields.io/badge/centos-262577?style=for-the-badge&logo=centos&logoColor=white"><img src="https://img.shields.io/badge/shell-FFD500?style=for-the-badge&logo=shell&logoColor=white">
+  <img src="https://img.shields.io/badge/docker-3776AB?style=for-the-badge&logo=docker&logoColor=white"><img src="https://img.shields.io/badge/jenkins-F2CB61?style=for-the-badge&logo=jenkins&logoColor=white"><img src="https://img.shields.io/badge/git-76B900?style=for-the-badge&logo=git&logoColor=white"><img src="https://img.shields.io/badge/centos-262577?style=for-the-badge&logo=centos&logoColor=white"><img src="https://img.shields.io/badge/shell-FFD500?style=for-the-badge&logo=shell&logoColor=white"><img src="https://img.shields.io/badge/slack-4A154B?style=for-the-badge&logo=slack&logoColor=white">
  
 # requirement
   - CentOS(also Virtual CentOS) 
