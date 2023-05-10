@@ -161,6 +161,37 @@ On this README file, explained how to set pipeline:**
       ⚠️ * 앞서, 위 명령어를 사용하기 위해선 Jenkins Cli 플러그인이 필요하다. (따로 설치 필요) *
       
       https://qaautomation.expert/2022/12/21/how-to-install-plugins-from-jenkins-cli/
+      
+   - 위 환경에서 일일히 파일 경로를 접근하는 것이 아닌 아래와 같은 방법으로 기본포트로만 접근하여 원하는 html 파일이 보이기 해줄 수 있다.
+    
+    - autoUpload.sh
+    
+```sh
+  #!/bin/bash
+
+  if [ $# -eq 1 ]; then
+    cntxt=$1
+    echo $cntxt
+    sed -i '$ d' tuneindex.sh
+    echo "cat /usr/share/nginx/html${cntxt} > /usr/share/nginx/html/index.html" >> tuneindex.sh
+  fi
+
+  msg=$(date +"%Y-%m-%d %T")" content edit"
+
+  git add . && git commit -m " $msg " && git push origin master
+  ```
+      - Dockerfile
+      
+  ```docker
+  FROM nginx
+  ADD ./ /usr/share/nginx/html
+  RUN chmod +x /usr/share/nginx/html/tuneindex.sh
+  RUN /usr/share/nginx/html/tuneindex.sh
+  EXPOSE 80
+  ```
+      
+      ⚠️ * tuneindex.sh 파일을 처음 만들 때 #!/bin/bash 의 명시와 다음줄에 임의의 더미 명령어를 임시로 만들어줘야한다. *
+      - 사용법은 autoUpload.sh 실행시 인자값으로 "/[경로].html" 을 넘겨주면 동작한다.
 
 ## README 
 
