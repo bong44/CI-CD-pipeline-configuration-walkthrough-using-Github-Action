@@ -17,10 +17,19 @@
                 document.write("<h1>"+this.x+"</h1>");
                 document.write("<h1>"+this.y+"</h1>");
                 document.write("<h1>"+this.myShape+"</h1>");
+            },
+            toString(){
+                return '{x:${this.x}, y:this.y}';
             }
         }
 
-        pObj.display();
+        pObj.display(pObj);
+
+        pObj.show = function(){
+            document.write(this.myShape)
+        }
+        
+        pObj.show();
     </script>
 </head>
 <body>
