@@ -16,7 +16,7 @@
         <link href="https://unpkg.com/gijgo@1.9.14/css/gijgo.min.css" rel="stylesheet" type="text/css" />
         <!-- date picker -->
     </head>
-    <body class="sb-nav-fixed sb-sidenav-toggled">
+    <body class="sb-nav-fixed">
         <nav class="sb-topnav navbar navbar-expand navbar-dark bg-dark">
             <!-- Navbar Brand-->
             <a class="navbar-brand ps-3" href="index.html">메타버스</a>
@@ -250,5 +250,13 @@
     <script src="https://cdn.datatables.net/1.11.3/js/jquery.dataTables.min.js"></script>
         <!-- <script src="https://cdn.jsdelivr.net/npm/simple-datatables@7.1.2/dist/umd/simple-datatables.min.js" crossorigin="anonymous"></script> -->
         <!-- <script src="js/datatables-simple-demo.js"></script> -->
+    <script>
+        $(document).ready(function() {
+            $("#sidebarToggle").bind("click",function () {
+            });
+
+            $("#sidebarToggle").trigger("click");
+        });
+    </script>
     </body>
 </html>
