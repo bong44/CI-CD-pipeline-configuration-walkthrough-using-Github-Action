@@ -207,4 +207,4 @@ On this README file, explained how to set pipeline:**
   
   - ssh 관련 파일 권한 권장사항 
   ![image](https://github.com/bong44/metanetweb/assets/65393001/2885b668-166f-40c9-9d2f-9b5c998eaffc)
-  원문주소) https://jizard.tistory.com/341
+  이미지 출처) https://jizard.tistory.com/341
