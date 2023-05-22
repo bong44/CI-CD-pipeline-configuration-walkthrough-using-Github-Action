@@ -9,4 +9,4 @@ fi
 
 msg=$(date +"%Y-%m-%d %T")" content edit"
 
-git add . && git commit -m " $msg " && git push origin master
+git add . && git commit -m " $msg " && git push origin master --force
