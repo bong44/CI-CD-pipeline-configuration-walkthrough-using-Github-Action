@@ -197,5 +197,9 @@ On this README file, explained how to set pipeline:**
       ⚠️ * tuneindex.sh 파일을 처음 만들 때 #!/bin/bash 의 명시와 다음줄에 임의의 더미 명령어를 임시로 만들어줘야한다. *
       - 사용법은 autoUpload.sh 실행시 인자값으로 "/[경로].html" 을 넘겨주면 동작한다.
 
-## README 
+## ISSUE 
+  - jenkins가 설치된 server에서 Execute Shell 실행시, jenkins에 대한 sudo 명령어 사용권한을 따로 추가해줘야 한다.
+   : https://hyunmin1906.tistory.com/282
+  
+  - Docker Hub에 Push 하는 과정에서 오류가 난다면 $ sudo docker login 명령을 통해 사용하는 레포지토리 소유자의 ID로 로그인이 잘 되어 있는지 확인 해줘야한다.
 
