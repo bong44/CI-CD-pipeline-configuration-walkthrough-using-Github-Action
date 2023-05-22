@@ -208,3 +208,5 @@ On this README file, explained how to set pipeline:**
   - ssh 관련 파일 권한 권장사항 
   ![image](https://github.com/bong44/metanetweb/assets/65393001/2885b668-166f-40c9-9d2f-9b5c998eaffc)
   이미지 출처) https://jizard.tistory.com/341
+  
+  - 원격지 컴퓨터에 대해 docker 관련 명령 실행시 왠만하면 sudo로 실행해야 오류 안 남.
