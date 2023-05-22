@@ -204,3 +204,7 @@ On this README file, explained how to set pipeline:**
   - Docker Hub에 Push 하는 과정에서 오류가 난다면 $ sudo docker login 명령을 통해 사용하는 레포지토리 소유자의 ID로 로그인이 잘 되어 있는지 확인 해줘야한다.
 
   - ssh 로 jenkins 서버가 아닌 다른 remote서버로 접근할 경우 remote서버에 ssh-keyscan 한 공개키 내용을 jenkins 서버의 known_hosts 파일에 추가해주고, .ssh/config 파일에도 remote 서버의 내용을 정의해주고, 개인키 또한 알고 있어야 한다. (원격지의 sh 파일을 실행하려면, 해당 .sh 파일의 실행권한에 대해 모든사용자로 변경해줘야 한다.)
+  
+  - ssh 관련 파일 권한 권장사항 
+  ![image](https://github.com/bong44/metanetweb/assets/65393001/2885b668-166f-40c9-9d2f-9b5c998eaffc)
+  원문주소) https://jizard.tistory.com/341
