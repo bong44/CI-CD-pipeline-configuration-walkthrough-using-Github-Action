@@ -142,6 +142,10 @@ On this README file, explained how to set pipeline:**
 ## How to use
 
   - C:\User\Kosta\[파일경로]> .\auroUpload.sh [커밋메세지 (선택사항)]  <-- 인수로 커밋 메세지 넣어서 실행 가능
+  
+## Others
+
+[Private Registy를 사용한 Docker Image 관리](http://www.google.co.kr).
 
 ### Tips
   
