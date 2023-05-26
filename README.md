@@ -145,7 +145,7 @@ On this README file, explained how to set pipeline:**
   
 ## Others
 
-[Private Registy를 사용한 Docker Image 관리](http://www.google.co.kr).
+  - (링크) [Private Registy로 Docker Image 관리]([http://www.google.co.kr](https://github.com/bong44/metanetweb/tree/master/privateregistry))
 
 ### Tips
   
