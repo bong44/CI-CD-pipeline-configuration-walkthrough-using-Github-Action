@@ -81,7 +81,7 @@
 
       ```
       
-      0-2. 깃 push 자동화 실행파일 코드 (auroUpload.sh)
+      0-2. 깃 push 자동화 실행파일 코드 (autoUpload.sh)
       
       ```sh
         #!/bin/bash
