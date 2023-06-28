@@ -1,7 +1,7 @@
 # Web Programming Practice & CI/CD auto pipeline build useing Git and Jenkins
 
-**This repo aims to practice to build a pipeline that useing git, jenkins, docker, linux shell and network programming skill.
-On this README file, explained how to set pipeline:**
+**이 repo는 git, jenkins, docker, linux shell 및 네트워크 프로그래밍 기술을 사용하여 파이프라인을 구축하는 연습을 목표로 합니다.
+이 README 파일에서 파이프라인 설정 방법을 설명했습니다.:**
 
   - Network setting
   - Local repository setting
@@ -23,7 +23,7 @@ On this README file, explained how to set pipeline:**
 
 # Getting start
 
-- Describes various settings for configuring the pipeline and how to execute it
+- 파이프라인 구성을 위한 다양한 설정 및 실행 방법에 대해 설명합니다.
 
 ## Network setting
 
